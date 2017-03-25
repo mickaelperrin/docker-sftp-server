@@ -17,6 +17,14 @@ services:
       - PASSWORD=password
       # Should be the same as the volume mapping of app container
       - FOLDER=/data
+      # Optional: chroot
+      - CHROOT=1
+    cap_add:
+      # Required if you want to chroot a volume from another container
+      - SYS_ADMIN
+    security_opt:
+      # Required if you want to chroot
+      - apparmor:unconfined
     ports:
       - 22
     volumes_from:

@@ -48,6 +48,13 @@ if [ "$1" == '/usr/sbin/sshd' ]; then
   # Change sftp password
   echo "$USERNAME:$PASSWORD" | chpasswd
 
+  # Mount the data folder in the chroot folder
+  if [ $CHROOT == 1 ]; then
+    mkdir -p /chroot${FOLDER}
+    sed -i -e 's/#ChrootDirectory/ChrootDirectory/' /etc/ssh/sshd_config
+    mount --bind $FOLDER /chroot${FOLDER}
+  fi
+
   # Check if a script is available in /docker-entrypoint.d and source it
   # You can use it for example to create additional sftp users
   for f in /docker-entrypoint.d/*; do
