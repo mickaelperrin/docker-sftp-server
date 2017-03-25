@@ -1,9 +1,9 @@
-SSHD server for docker
+SFTP server for docker
 ======================
 
 ## Description
 
-This is a lightweight SSHD server in a docker container.
+This is a lightweight SFTP server in a docker container.
 
 This image provides:
  - an alpine base image
