@@ -24,7 +24,9 @@ if [ "$1" == '/usr/sbin/sshd' ]; then
   fi
 
   # Grab UID of owner of sftp home directory
-  OWNER_ID=$(stat -c '%u' $FOLDER)
+  if [ -z OWNER_ID ]; then
+    OWNER_ID=$(stat -c '%u' $FOLDER)
+  fi
 
   # Create appropriate SFTP user
   # If uid doesn't exist on the system
