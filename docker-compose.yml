@@ -1,0 +1,23 @@
+version: '2'
+
+services:
+  # Example application container, this is where your data is.
+  app:
+    image: alpine:3.5
+    # Simulate an application server with an endless loop.
+    command: sh -c 'while true; do sleep 10; done';
+    volumes:
+      - ./data:/data
+  # SSHD Server
+  sshd:
+    build: .
+    image: mickaelperrin/sshd-server:latest
+    environment:
+      - USERNAME=sftp
+      - PASSWORD=password
+      # Should be the same as the volume mapping of app container
+      - FOLDER=/data
+    ports:
+      - 22
+    volumes_from:
+      - app
