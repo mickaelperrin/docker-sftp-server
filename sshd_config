@@ -1,0 +1,46 @@
+AddressFamily inet
+Port 22
+
+AcceptEnv LANG LC_*
+AllowAgentForwarding no
+AllowTcpForwarding no
+ChallengeResponseAuthentication yes
+Ciphers aes256-ctr,aes192-ctr,aes128-ctr
+ClientAliveCountMax 3
+ClientAliveInterval 600
+Compression yes
+GatewayPorts no
+HostKey /etc/ssh/ssh_host_rsa_key
+HostKey /etc/ssh/ssh_host_dsa_key
+HostKey /etc/ssh/ssh_host_ecdsa_key
+HostbasedAuthentication no
+IgnoreRhosts yes
+IgnoreUserKnownHosts yes
+KexAlgorithms diffie-hellman-group14-sha1,diffie-hellman-group-exchange-sha1,diffie-hellman-group-exchange-sha256,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521
+LogLevel VERBOSE
+LoginGraceTime 30s
+MACs hmac-sha2-512,hmac-sha2-256,hmac-ripemd160
+MaxAuthTries 2
+MaxSessions 10
+MaxStartups 10:30:100
+PasswordAuthentication yes
+PermitEmptyPasswords no
+PermitRootLogin no
+PermitTunnel no
+PermitUserEnvironment no
+PrintMotd no
+Protocol 2
+PubkeyAuthentication no
+StrictModes yes
+Subsystem sftp /usr/lib/openssh/sftp-server -f AUTHPRIV -l info
+SyslogFacility AUTH
+TCPKeepAlive no
+UsePrivilegeSeparation sandbox
+X11Forwarding no
+X11UseLocalhost yes
+
+AllowGroups sftp
+Match Group sftp
+  #ChrootDirectory /chroot
+  ForceCommand internal-sftp
+
