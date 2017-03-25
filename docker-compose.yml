@@ -20,7 +20,7 @@ services:
       # Optional: chroot
       - CHROOT=1
     cap_add:
-      # Required if you want to chroot a volume from another container
+      # Required if you want to chroot
       - SYS_ADMIN
     security_opt:
       # Required if you want to chroot
