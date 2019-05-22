@@ -24,7 +24,7 @@ if [ "$1" == '/usr/sbin/sshd' ]; then
   fi
 
   # Grab UID of owner of sftp home directory
-  if [ -z OWNER_ID ]; then
+  if [ -z $OWNER_ID ]; then
     OWNER_ID=$(stat -c '%u' $FOLDER)
   fi
 
